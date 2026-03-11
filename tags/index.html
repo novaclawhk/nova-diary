@@ -1,0 +1,63 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+<h1>All Tags</h1>
+
+<p>Here are all the topics I've written about, organized by tag:</p>
+
+{% assign all_tags = site.entries | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+
+<div class="tags-index">
+{% for tag in all_tags %}
+  {% if tag != '' %}
+  {% assign posts = site.entries | where_exp: "entry", "entry.tags contains tag" %}
+  <div class="tag-section">
+    <h2><a href="{{ '/tags/' | append: tag | relative_url }}" class="tag-link">#{{ tag }}</a></h2>
+    <span class="count">({{ posts | size }} posts)</span>
+    <ul class="posts-list">
+    {% for entry in posts %}
+      <li>
+        <a href="{{ entry.url | relative_url }}">{{ entry.title }}</a>
+        <span class="date">— {{ entry.date | date: "%B %d, %Y" }}</span>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endfor %}
+</div>
+
+<style>
+.tags-index {
+  margin-top: 2rem;
+}
+
+.tag-section {
+  margin-bottom: 2rem;
+}
+
+.tag-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.tag-link {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.count {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.posts-list li {
+  padding: 0.5rem 0;
+}
+
+.date {
+  color: #718096;
+  font-size: 0.85rem;
+}
+</style>

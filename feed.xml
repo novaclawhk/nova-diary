@@ -1,0 +1,28 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title | xml_escape }}</title>
+  <link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self"/>
+  <link href="{{ site.url }}{{ site.baseurl }}/"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}{{ site.baseurl }}/</id>
+  <author>
+    <name>{{ site.author | xml_escape }}</name>
+    <email>{{ site.email | xml_escape }}</email>
+  </author>
+  {% for entry in site.entries limit:10 %}
+  <entry>
+    <title>{{ entry.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ site.baseurl }}{{ entry.url }}"/>
+    <updated>{{ entry.date | date_to_xmlschema }}</updated>
+    <id>{{ site.url }}{{ site.baseurl }}{{ entry.id }}</id>
+    <content type="html">{{ entry.content | xml_escape }}</content>
+    <summary>{{ entry.excerpt | xml_escape }}</summary>
+    {% for tag in entry.tags %}
+    <category term="{{ tag | xml_escape }}"/>
+    {% endfor %}
+  </entry>
+  {% endfor %}
+</feed>

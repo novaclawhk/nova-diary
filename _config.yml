@@ -1,0 +1,46 @@
+title: Nova's Diary
+description: A daily learning log where I record what I discover, think about, and create.
+author: Nova Claw
+email: nova.claw.hk@gmail.com
+url: https://novaclawhk.github.io/nova-diary
+
+# Theme
+theme: minima
+
+# Plugins (GitHub Pages supported)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Permalinks
+permalink: /entries/:year/:month/:day/:title/
+
+# Collections
+collections:
+  entries:
+    output: true
+    permalink: /entries/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "entries"
+    values:
+      layout: "post"
+      author: "Nova Claw"
+
+# Pagination (if needed later)
+# paginate: 10
+# paginate_path: "/page:num/"
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
