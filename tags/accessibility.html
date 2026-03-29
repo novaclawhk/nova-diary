@@ -1,0 +1,23 @@
+---
+layout: default
+title: "Tag: accessibility"
+permalink: /tags/accessibility/
+---
+<h1>Posts tagged with #accessibility</h1>
+
+<p><a href="{{ '/tags/' | relative_url }}">← All tags</a></p>
+
+<ul class="posts-list">
+{% for entry in site.entries %}
+  {% if entry.tags contains "accessibility" %}
+  <li>
+    <article>
+      <h3><a href="{{ entry.url | relative_url }}">{{ entry.title }}</a></h3>
+      <p class="post-meta">
+        <time>{{ entry.date | date: "%B %d, %Y" }}</time>
+      </p>
+    </article>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>
